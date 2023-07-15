@@ -12,63 +12,73 @@ namespace Challenges.Calculator
                 var contextName = nameof(CalculatorChallenges);
 
                 _menu.MenuConstruction(contextName);
-
                 Console.WriteLine("Bem vindo ao Calculator Challenges!");
-                Console.WriteLine("Informe uma operação Desejada \n" +
-                    "1 - Somar \n" +
-                    "2 - Subtrair \n" +
-                    "3 - Multiplicar \n" +
-                    "4 - Dividir \n" +
-                    "5 - Resto de uma Divisão \n" +
-                    "6 - Potenciação \n" +
-                    $"0 - Sair de {contextName}");
+                var repeat = 0;
 
-                int.TryParse(Console.ReadLine(), out int option);
-
-                if (option == 0)
-                    return;
-
-                Console.WriteLine("Digite o primeiro valor: ");
-                int.TryParse(Console.ReadLine(), out int n1);
-
-                Console.WriteLine("Digite o segundo valor: ");
-                int.TryParse(Console.ReadLine(), out int n2);
-
-                double result = 0;
-
-                switch (option)
+                do
                 {
-                    case 1:
-                        result = Sum(n1, n2);
-                        break;
+                    Console.WriteLine("Informe uma operação Desejada \n" +
+                                      "1 - Somar \n" +
+                                      "2 - Subtrair \n" +
+                                      "3 - Multiplicar \n" +
+                                      "4 - Dividir \n" +
+                                      "5 - Resto de uma Divisão \n" +
+                                      "6 - Potenciação \n" +
+                                      $"0 - Sair de {contextName}");
 
-                    case 2:
-                        result = Subtract(n1, n2);
-                        break;
+                    int.TryParse(Console.ReadLine(), out int option);
 
-                    case 3:
-                        result = Multiply(n1, n2);
-                        break;
+                    if (option == 0)
+                        return;
 
-                    case 4:
-                        result = Division(n1, n2);
-                        break;
+                    Console.WriteLine("Digite o primeiro valor: ");
+                    int.TryParse(Console.ReadLine(), out int n1);
 
-                    case 5:
-                        result = RestOfDivision(n1, n2);
-                        break;
+                    Console.WriteLine("Digite o segundo valor: ");
+                    int.TryParse(Console.ReadLine(), out int n2);
 
-                    case 6:
-                        result = Potentiation(n1, n2);
-                        break;
+                    double result = 0;
 
-                    default:
-                        Console.WriteLine("Opção invalida");
-                        break;
-                }
+                    switch (option)
+                    {
+                        case 1:
+                            result = Sum(n1, n2);
+                            break;
 
-                Console.WriteLine($"Resultado igual a {result}");
-                Console.ReadLine();
+                        case 2:
+                            result = Subtract(n1, n2);
+                            break;
+
+                        case 3:
+                            result = Multiply(n1, n2);
+                            break;
+
+                        case 4:
+                            result = Division(n1, n2);
+                            break;
+
+                        case 5:
+                            result = RestOfDivision(n1, n2);
+                            break;
+
+                        case 6:
+                            result = Potentiation(n1, n2);
+                            break;
+
+                        default:
+                            Console.WriteLine("Opção invalida");
+                            break;
+                    }
+
+                    Console.WriteLine($"Resultado igual a {result}");
+
+                    Console.WriteLine("Informe 1 caso queira efetuar outra operação.");
+
+                    int.TryParse(Console.ReadLine(), out repeat);
+
+                    Console.Clear();
+
+                } while (repeat == 1);
 
             }
             catch (Exception ex)
